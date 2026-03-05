@@ -2,10 +2,10 @@ name: autosign
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # 每天 8 点运行
+    - cron: '50 0 * * *'  # 每天北京时间 8:50 运行（UTC 00:50）
   push:
     branches:
-      - main  # 仅对主分支进行触发，您可以根据需要更改分支名称
+      - main
   workflow_dispatch:
 
 jobs:
@@ -14,10 +14,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.9'
 
@@ -36,6 +36,5 @@ jobs:
           ADDRESS: ${{ secrets.ADDRESS }}
           PROVINCE: ${{ secrets.PROVINCE }}
           CITY: ${{ secrets.CITY }}
-          PUSHPLUS_SET: ${{ secrets.PUSHPLUS_SET }}
-          PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
+          SERVERCHAN_SENDKEY: ${{ secrets.SERVERCHAN_SENDKEY }}
         run: python main.py
