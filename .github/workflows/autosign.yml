@@ -2,7 +2,8 @@ name: autosign
 
 on:
   schedule:
-    - cron: '50 0 * * *'  # 每天北京时间 8:50 运行（UTC 00:50）
+    - cron: '0 0 * * *'  
+    - cron: '50 0 * * *'  
   push:
     branches:
       - main
